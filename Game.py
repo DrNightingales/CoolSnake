@@ -1,8 +1,7 @@
 import pygame as pg
 from constants import *
-from GameScreen import GameScreen
 from LoadScreen import LoadScreen
-from PlayScreen import  PlayScreen
+from PlayScreen import PlayScreen
 from Button import Button
 
 
