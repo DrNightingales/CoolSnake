@@ -2,7 +2,12 @@ import pygame
 
 
 def fill_gradient(surface, color, gradient, rect=None, vertical=True, forward=True):
-    """fill a surface with a gradient pattern
+    """
+
+    Pygame recipe: http://www.pygame.org/wiki/GradientCode
+
+    fill a surface with a gradient pattern
+
     Parameters:
     color -> starting color
     gradient -> final color
