@@ -1,6 +1,7 @@
-from constants import *
-from GameScreen import GameScreen
 import pygame as pg
+
+from GameScreen import GameScreen
+from constants import *
 
 
 class PlayScreen(GameScreen):
@@ -11,8 +12,10 @@ class PlayScreen(GameScreen):
 
     def draw_grid(self):
         for i in range(self.n_lines+1):
-            pg.draw.line(self.win, WHITE, (i*self.cell_size, 0), (i*self.cell_size, self.height), 2)  # Vertical line
-            pg.draw.line(self.win, WHITE, (0, i*self.cell_size), (self.height, i*self.cell_size), 2)  # Horizontal line
+            pg.draw.line(self.win, WHITE, (i * self.cell_size, 0), (i * self.cell_size, self.height),
+                         SF)  # Vertical line
+            pg.draw.line(self.win, WHITE, (0, i * self.cell_size), (self.height, i * self.cell_size),
+                         SF)  # Horizontal line
             pg.draw.line(self.win, WHITE, (0, self.height-1), (self.height, self.height-1))
 
     def redraw(self):
@@ -21,6 +24,7 @@ class PlayScreen(GameScreen):
         """
         self.win.fill(self.bg_color)
         self.draw_grid()
+
 
 
 

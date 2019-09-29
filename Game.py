@@ -1,8 +1,11 @@
 import pygame as pg
-from constants import *
+
+from Apple import Apple
+from Button import Button
 from LoadScreen import LoadScreen
 from PlayScreen import PlayScreen
-from Button import Button
+from Snake import Snake
+from constants import *
 
 
 class Game:
@@ -32,6 +35,13 @@ class Game:
         settings_btn = Button(self.load_screen.win, RETRO_BLUE, 0.39625 * WIDTH, 0.702 * HEIGHT, size=100,
                               on_click=None, btn_text="Settings")
         self.load_screen.add_game_object((12, settings_btn))
+
+        snake = Snake(self.play_screen.win)
+        self.play_screen.add_game_object((10, snake))
+
+        apple = Apple(self.play_screen.win, RETRO_PINK, 28, snake)
+        self.play_screen.add_game_object((9, apple))
+
         while True:
             self.active_screen.screen_update()
 

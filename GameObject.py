@@ -11,5 +11,9 @@ class GameObject:
         self.x = x*SF
         self.y = y*SF
 
+    @property
+    def pos(self):
+        return self.x, self.y
+
     def update(self, event_list):
         pass

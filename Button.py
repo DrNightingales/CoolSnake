@@ -1,16 +1,17 @@
-from GameObject import GameObject
 import pygame as pg
-from constants import *
+
+from GameObject import GameObject
 
 
 class Button(GameObject):
     """
     Button class: rectangle with click handling
     """
-    def __init__(self, surface, color, x, y, on_click, size=100, btn_text="Button!"):
+
+    def __init__(self, surface, color, x, y, on_click, size=100, btn_text="Button!", font="fonts/true-crimes.ttf"):
         super().__init__(surface, color, x, y)
         pg.font.init()
-        self.font = pg.font.Font("fonts/true-crimes.ttf", size)
+        self.font = pg.font.Font(font, size)
         self.text_surface = self.font.render(btn_text, True, color)
         self.width, self.height = self.font.size(btn_text)
         self.rect = pg.Rect((self.x, self.y), (self.width, self.height))
