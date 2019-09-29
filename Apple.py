@@ -7,12 +7,20 @@ from constants import *
 
 
 class Apple(Cube):
+    """
+    Apple class, GO for snake to eat
+    """
     def __init__(self, surface, color, a, snake):
-        self.snake = snake
+        self.snake = snake  # Apple watches snake
         x, y = self.get_coordinates()
         super().__init__(surface, color, x, y, a)
 
     def update(self, event_list):
+        """
+        Detects snake-apple interaction, updates score, extends snake and reposition the apple
+        :param event_list: event list from host screen
+        :return:
+        """
         if self.pos == self.snake.head.pos:
             self.snake.extend()
             print(len(self.snake.body))
@@ -21,10 +29,13 @@ class Apple(Cube):
         pg.draw.rect(self.surface, self.color, self.rect)
 
     def get_coordinates(self):
+        """
+        Updates apple coordinates randomly, but in a way to avoid apple be places in the snake
+        :return: x, y - a pair of new coors.
+        """
         x, y = ri(0, 19), ri(0, 19)
-        for cube in self.snake.body:
-            while cube.x == x:
-                x = ri(0, 19)
-            while cube.y == y:
-                y = ri(0, 19)
-            return x, y
+        coors = [(c.x / SF, c.y / SF) for c in self.snake.body]
+        while (x, y) in coors:
+            x, y = ri(0, 19), ri(0, 19)
+
+        return x, y
