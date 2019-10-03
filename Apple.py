@@ -10,10 +10,14 @@ class Apple(Cube):
     """
     Apple class, GO for snake to eat
     """
-    def __init__(self, surface, color, a, snake):
+
+    def __init__(self, surface, color, a, snake, score_box):
         self.snake = snake  # Apple watches snake
         x, y = self.get_coordinates()
         super().__init__(surface, color, x, y, a)
+        self.score_box = score_box
+        self.score = 0
+
 
     def update(self, event_list):
         """
@@ -23,6 +27,8 @@ class Apple(Cube):
         """
         if self.pos == self.snake.head.pos:
             self.snake.extend()
+            self.score += 1
+            self.score_box.text = f"Score: {self.score}"
             print(len(self.snake.body))
             x, y = self.get_coordinates()
             self.x, self.y = x * SF, y * SF

@@ -5,6 +5,7 @@ from Button import Button
 from LoadScreen import LoadScreen
 from PlayScreen import PlayScreen
 from Snake import Snake
+from TextBox import TextBox
 from constants import *
 
 
@@ -39,7 +40,10 @@ class Game:
         snake = Snake(self.play_screen.win)
         self.play_screen.add_game_object((10, snake))
 
-        apple = Apple(self.play_screen.win, RETRO_PINK, 28, snake)
+        score_box = TextBox(self.play_screen.win, NEON_YELLOW, 650, 100, "fonts/true-crimes.ttf", "Score: ", 50)
+        self.play_screen.add_game_object((12, score_box))
+
+        apple = Apple(self.play_screen.win, RETRO_PINK, 28, snake, score_box)
         self.play_screen.add_game_object((9, apple))
 
         while True:

@@ -1,3 +1,5 @@
+from sys import exit
+
 import pygame as pg
 
 from Cube import Cube
@@ -46,6 +48,7 @@ class Snake:
         # Collision detection
         if self.head.pos in [c.pos for c in self.body[1:]]:
             pg.quit()
+            exit()
 
     def register_key(self):
         """
