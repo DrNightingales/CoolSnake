@@ -1,8 +1,8 @@
 # TODO List
 
-- [ ] Restyle some elemets:
+- [ ] Restyle some elements:
 
-  - [ ] Make the title label neon
+  - [ ] Make the title lable neon
   - [ ] Change the colors of apple, score lable, *etc*
   - [ ] Make the snake neon
   - [ ] Remove grid?
