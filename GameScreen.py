@@ -1,6 +1,8 @@
-import pygame as pg
-from constants import *
 from sys import exit
+
+import pygame as pg
+
+from constants import *
 
 
 class GameScreen:
@@ -19,30 +21,32 @@ class GameScreen:
         self.bg_color = bg_color
 
         self.win = pg.display.set_mode((self.width, self.height))
-        self._game_objects = []  # List of GOs, which belong to the current screen
+        self._GOs = {}  # Dict of GOs, which belong to the current screen
         self.event_list = []  # List of events, updated per frame
 
     @property
     def game_objects(self):
-        return self._game_objects
+        return self._GOs
 
     @game_objects.setter
-    def game_objects(self):
+    def game_objects(self, value):
         raise Exception("Can't set game_objects")
 
-    def add_game_object(self, game_object):
+    def add_game_object(self, name, game_object):
         """
         Adds a GameObject to the screen
-        :param game_object: (priority, GameObject class instance)
-        """
-        self._game_objects.append(game_object)
 
-    def remove_game_object(self, game_object):
+        :param game_object: (priority, GameObject class instance)
+        name: name of the object
+        """
+        self._GOs[name] = game_object
+
+    def remove_game_object(self, name):
         """
         Removes GO from the screen
-        :param game_object: (priority, GameObject class instance)
+        :param name: remove GO by name
         """
-        self._game_objects.remove(game_object)
+        del self._GOs[name]
 
     def screen_update(self):
         """
@@ -75,8 +79,9 @@ class GameScreen:
         """
         Updates all GameObjects on the screen
         """
-        self._game_objects.sort()
-        for obj in self._game_objects:
+        object_list = [v for v in self._GOs.values()]
+        object_list.sort()
+        for obj in object_list:
             obj[1].update(self.event_list)
 
 

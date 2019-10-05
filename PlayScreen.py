@@ -1,3 +1,5 @@
+from random import randint as ri
+
 import pygame as pg
 
 from GameScreen import GameScreen
@@ -25,7 +27,29 @@ class PlayScreen(GameScreen):
         self.win.fill(self.bg_color)
         self.draw_grid()
 
+    def update_objects(self):
+        self.eat_apple()
+        super().update_objects()
 
+    def eat_apple(self):
+        """
+        Handles collision of the apple with the head of the snake
+        :return:
+        """
+        if self._GOs["snake"][1].head.pos == self._GOs["apple"][1].pos:
+            self._GOs["snake"][1].extend()
+            self.update_apple()
+            self._GOs["score_box"][1].text = "Score: " + str(len(self._GOs["snake"][1].body) - 1)
 
+    def update_apple(self):
+        """
+        Updates apple position
+        :return:
+        """
+        x, y = ri(0, 19), ri(0, 19)
+        coors = [(c.x / SF, c.y / SF) for c in self._GOs["snake"][1].body]
+        while (x, y) in coors:
+            x, y = ri(0, 19), ri(0, 19)
 
-
+        self._GOs["apple"][1].x = x * SF
+        self._GOs["apple"][1].y = y * SF
